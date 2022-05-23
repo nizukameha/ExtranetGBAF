@@ -39,6 +39,11 @@
                                     All
 -----------------------------------------------------------------------------*/
 
+/* Ombre du titre */    
+    h1 {
+        font-size: 2em;
+        text-shadow: 1px 1px 4px hsla(0, 100%, 50%, 0.5);
+    }
 /* Le soulignement des liens est actif seulement au survol de la souris*/
     a {
         text-decoration: none;
