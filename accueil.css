@@ -1,0 +1,89 @@
+/* --------------------------------------------------------------------------
+                                    All
+-----------------------------------------------------------------------------*/
+
+/* Couleur et épaisseur des traits de séparation */
+    hr {
+        border: solid 1px;
+        border-color:hsla(0, 100%, 50%);
+    }
+/* Centrer les titres */
+    h1, h2, h3 {
+        text-align: center;
+    }
+/* Le soulignement des liens est actif seulement au survol de la souris*/
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+/* Centrer le texte du footer */       
+    .footer {
+        text-align: center;
+    }
+/* Centrer le texte du header */    
+    .conteneurHeader {
+        text-align: center;
+    }
+/* Center le bloc conteneur, définir ses dimensions, justifier le texte */    
+    .conteneurPresentation {
+        text-align: justify;
+        margin: 0 auto;
+        width: 90%;
+    }
+/* Center le bloc conteneur et définir ses dimensions */    
+    .conteneurActeurs {
+        text-align: center;
+        margin: 0 auto;
+        width: 90%;
+    }
+/* Style du bloc conteneur de chaque acteurs */
+    .acteur {
+        border: solid 2px;
+        border-radius: 5px;
+        border-color:hsla(0, 100%, 50%)
+    }
+/* Dimension du logo des acteurs */    
+    .logoActeurs {
+        margin-top: 1em;;
+        text-align:center;
+        max-width: 300px;
+    }
+/* Dimensions, marge du texte centré */    
+    .descriptionActeur {
+        text-align: center;
+        margin: 0 auto;
+        padding: 1em;
+        width: 90%;
+    }
+/* Design du bouton "Lire la suite" */    
+    .boutonSuite {
+        font-weight: bold;
+        display: inline-block;
+        width: 30%;
+        border: solid;
+        border-radius: 5px;
+        padding: 0.3em;
+        background-color: hsla(0, 100%, 50%, 0.3);
+        cursor: pointer;
+        
+    }
+/* Mettre le texte en gras */    
+    .gras {
+        font-weight: bold;
+    }
+
+/* --------------------------------------------------------------------------
+                                    Mobile
+-----------------------------------------------------------------------------*/
+@media screen and (max-width: 425px) {
+
+    .logo {
+        width: 20%;
+    }
+    .utilisateur {
+        font-size: 1.2em;
+        margin: 0;
+    }
+}
