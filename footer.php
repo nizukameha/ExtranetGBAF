@@ -1,1 +1,0 @@
-<p class="footer"><a href="mentionslegales.html">Mentions légales</a> | <a href="contact.html">Contact</a></p>
