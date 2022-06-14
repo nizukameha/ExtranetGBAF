@@ -8,32 +8,7 @@
     button:hover {
         transform: scale(1.1);
     }
-/* Pour le formulaire */
-    @keyframes fadeIn {
-        0% {
-        opacity: 0;
-        } 
-        100% {
-        opacity: 1;
-        }
-    }
-    @keyframes fromTop {
-        0% {
-            margin-top: 100%;
-        }
-        100% {
-            margin-top: 0%;
-        }
-    }
-/* Pour le logo */
-    @keyframes fadeOut {
-        0% {
-        opacity: 1;
-        } 
-        100% {
-        opacity: 0.05;
-        }
-    }
+
 
 /* --------------------------------------------------------------------------
                                     All
@@ -77,8 +52,13 @@
         font-size: 0.5em;
         cursor: pointer;
     }
+    .button a {
+        text-decoration: none;
+        color: black;
+    }
 /* Régler la marge des blocs de saisie de données, les arrondir */
     input {
+        border: solid 2px;
         padding: 0.5em;
         border-radius: 5px;
 	}
@@ -93,7 +73,11 @@
         -moz-animation: fadeOut 5s; /* Firefox */
         -webkit-animation: fadeOut 5s;  /* Safari & Chrome */
         -o-animation: fadeOut 5s;   /* Opera */
-        opacity: 0.05;
+        opacity: 0.1;
+    }
+    .erreur {
+        color: red;
+        font-size: 0.8em;
     }
 
 /* --------------------------------------------------------------------------
@@ -101,10 +85,24 @@
 -----------------------------------------------------------------------------*/
 @media screen and (max-width: 425px) {
 
+/* Centrer le texte du header */    
+    .conteneurHeader {
+        display: flex;
+        justify-content: center;
+    }
+/* Dimension du logo */
+    .logo {
+        width: 20%;
+    }
+/* Centrer le texte du footer */       
+    .footer {
+        text-align: center;
+    }
 /* Dimension et position du formulaire */
     .conteneurImage {
         height: 500px;
-        margin-top: 50%;
+        margin-top: 10%;
+        margin-bottom: 33%;
     }
 /* Dimension du logo en fond */    
     .logoOpacity {
@@ -125,9 +123,22 @@
 -----------------------------------------------------------------------------*/
 @media screen and (min-width: 768px) {
 
+    .conteneurHeader {
+        display: flex;
+        justify-content: center;
+    }
+/* Dimension du logo */
+    .logo {
+        width: 10%;
+    }
+/* Centrer le texte du footer */       
+    .footer {
+        text-align: center;
+    }
 /* Dimension du formulaire */
     .conteneurImage {
-        height: 800px;
+        height: 670px;
+        margin-bottom: 1%;
     }
 /* Dimension du logo en fond */    
     .logoOpacity {
@@ -143,19 +154,37 @@
         width:15%;
     }
 }
+/* --------------------------------------------------------------------------
+                                Pc portable
+-----------------------------------------------------------------------------*/
+@media screen and (min-width: 1024px) {
+    /* Dimension du formulaire */
+    .conteneurImage {
+        height: 585px;
+        margin-bottom: 6%;;
+    }
+}
 
 /* --------------------------------------------------------------------------
                             Ordinateur de bureau
 -----------------------------------------------------------------------------*/
 @media screen and (min-width: 1440px) {
 
+    .conteneurHeader {
+        display: flex;
+        justify-content: center;
+    }
+/* Dimension du logo */
+    .logo {
+        width: 8%;
+    }
 /* Dimension du formulaire */
     .conteneurImage {
-        height: 800px;
+        height: 545px;
     }
 /* Dimension du logo en fond */    
     .logoOpacity {
-        width: 45%;
+        width: 38%;
     }
 /* Dimension et marge des blocs de saisie de données */
     input {

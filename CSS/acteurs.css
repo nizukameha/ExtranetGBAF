@@ -1,0 +1,266 @@
+/* --------------------------------------------------------------------------
+                                    All
+-----------------------------------------------------------------------------*/
+header {
+    background-color: rgb(230, 230, 230);
+}
+
+/* Couleur et épaisseur des traits de séparation */
+    hr {
+        border: solid 1px;
+        border-color:hsla(0, 100%, 50%);
+    }
+/* Centrer les titres */
+    h1, h2, h3 {
+        text-align: center;
+    }
+/* Le soulignement des liens est actif seulement au survol de la souris*/
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+/* Centrer le texte du footer */       
+    .footer {
+        text-align: center;
+    }
+/* Center le bloc conteneur et définir ses dimensions */    
+    .conteneurActeurs {
+        margin: 0 auto;
+    }
+/* Style du bloc conteneur de chaque acteurs */
+    .acteur {
+        background-color: rgb(230, 230, 230);
+        border: solid 2px;
+        border-radius: 5px;
+        border-color:hsla(0, 100%, 50%);
+    }
+
+/* Dimension du logo des acteurs */    
+    .logoActeurs {
+        width: 95%;
+        margin: 1em;
+    }
+/* Dimensions, marge du texte centré */    
+    .descriptionActeur, p {
+        text-align: justify;
+        margin: 0 auto;
+        padding: 1em;
+        width: 90%;
+    }
+    ul {
+        text-align: justify;
+    }
+/* Mettre le texte en gras */    
+    .gras {
+        font-weight: bold;
+    }
+/* --------------------------------------------------------------------------
+                                    Mobile
+-----------------------------------------------------------------------------*/
+@media screen and (max-width: 425px) {
+
+/* Centrer le texte du header */    
+    .conteneurHeader {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+/* Dimension du logo */
+    .logo {
+        width: 20%;
+    }
+/* Dimension du texte */    
+    .utilisateur {
+        font-size: 1.2em;
+        margin-top: 35px;
+    }
+/* Dimensions du bloc conteneur */    
+    .conteneurActeurs {
+        width: 90%;
+    }
+/* Center le bloc conteneur et définir ses dimensions */    
+    .conteneurActeurs {
+        text-align: center;
+    }
+/* Dimension du logo des acteurs */    
+    .logoActeurs {
+        margin: 1em;
+        width: 90%;
+    }
+    .parametre {
+        width: 30px;
+        height: 30px;
+    }
+    .deconnexion {
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+    }
+    .icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+                                    Tablette
+-----------------------------------------------------------------------------*/
+@media screen and (min-width: 768px) {
+
+/* Centrer le texte du header */    
+    .conteneurHeader {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+/* Dimension du logo */    
+    .logo {
+        width: 10%;
+    }
+/* Dimension du texte et marge haute pour centrer verticalement */     
+    .utilisateur {
+        font-size: 1.2em;
+        margin-top: 5%;
+    }
+/* Dimensions du bloc conteneur */    
+    .conteneurActeurs {
+        width: 90%;
+    }
+/* Style du bloc conteneur de chaque acteurs */
+    .acteur {
+        display: flex;
+        flex-direction: column;
+    }
+    .conteneurDescriptionBoutton {
+        width: 95%;
+        margin:1em
+    }
+/* Dimensions, marge du texte centré */    
+    .descriptionActeur {
+        text-align: justify;
+    }
+    .parametre {
+        width: 30px;
+        height: 30px;
+    }
+    .deconnexion {
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+    }
+    .icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+                            Ordinateur portable
+-----------------------------------------------------------------------------*/
+@media screen and (min-width: 1024px) {
+
+/* Dimension du logo des acteurs */    
+    .logoActeurs {
+        margin: 3em;;
+        text-align:center;
+        width: 90%;
+    }
+    .conteneurDescriptionBoutton {
+        width: 95%;
+        margin:1em
+    }
+    
+/* Dimensions, marge du texte centré */    
+    .descriptionActeur {
+        text-align: justify;
+    }
+    ul {
+        text-align: justify;
+        margin-left: 3em;
+    }
+}
+/* --------------------------------------------------------------------------
+                            Ordinateur de bureau
+-----------------------------------------------------------------------------*/
+@media screen and (min-width: 1440px) {
+
+    /* Dimension du logo */    
+    .logo {
+        width: 5%;
+    }
+/* Dimension du texte et marge haute pour centrer verticalement */     
+    .utilisateur {
+        font-size: 2em;
+        margin-top: 2%;
+    }
+    .parametre {
+        width: 30px;
+        height: 30px;
+    }
+    .parametre:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        }
+    .deconnexion {
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+    }
+    .deconnexion:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    .icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    /* Dimensions du bloc conteneur */    
+    .conteneurActeurs {
+        width: 90%;
+    }
+    h1, h2, h3 {
+        font-size: 2em;
+    }
+    /* Dimension du logo des acteurs */    
+    .logoActeurs {
+        margin: 3em;;
+        text-align: center;
+        width: 90%;
+    }
+    .conteneurDescriptionBoutton {
+        width: 95%;
+    }
+    /* Dimensions, marge du texte centré */    
+    .descriptionActeur {
+        text-align: justify;
+    }
+}
+/* --------------------------------------------------------------------------
+                                Grand écran
+-----------------------------------------------------------------------------*/
+@media screen and (min-width: 2560px) {
+    /* Dimension du logo des acteurs */    
+    .logoActeurs {
+        margin: 3em 20em 3em;
+        text-align:center;
+        width: 70%;
+    }
+    .conteneurDescriptionBoutton {
+        width: 50%;
+        margin: 1em 0em 1em 35em;
+    }
+/* Dimensions, marge du texte centré */    
+    .descriptionActeur {
+        text-align: justify;
+        margin: 0 auto;
+        padding: 1em;
+        width: 90%;
+    }
+}
