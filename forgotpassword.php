@@ -20,47 +20,30 @@ if(!empty($_POST)) {
         }
         // Si l'utilisateur a remplis l'identifiant et la reponse a la question, on vérifie la correpsondance
         if($valid) {
-            $requette = $DB->prepare("SELECT reponse
+            $requette = $DB->prepare("SELECT *
                 FROM account
                 WHERE identifiant = ?");
             $requette->execute(array($identifiant));
             $requette = $requette->fetch();
 
-            // Si la combinaison identifiant et reponse est n'est pas vrai voici ce qu'il se passe :
-            if(isset($requette['reponse'])) {
-                // Si l'identifiant est correct mais pas la reponse alors c'est faux
-                if($reponse != $requette['reponse']) {
-                    $valid = false;
-                    $err_pseudo = "* L'identifiant ou/et la réponse sont incorrects";
-                }
-            // On vérifie la combinaison question/réponse
-            } else {
-                $valid = false;
-                $err_pseudo = "* L'identifiant ou/et la réponse sont incorrects";
-            }
-
-            $requette = $DB->prepare("SELECT identifiant
-                FROM account
-                WHERE reponse = ?");
-            $requette->execute(array($reponse));
-            $requette = $requette->fetch();
-            // Si la combinaison question/réponse est vrai mais pas l'identifiant :
-            if($identifiant != $requette['identifiant']) {
-                $valid = false;
-                $err_pseudo = "* L'identifiant ou/et la réponse sont incorrects";
-            } else {
-                $valid = false;
-            }
-        }
-        if($valid) {
-            header('Location: newpassword.php');
+            // On compare les données entrées par l'utilisateur avec la bdd
+            $validData = (($identifiant == $requette['identifiant']) AND ($reponse == $requette['reponse']) AND ($question == $requette['question']));
+            // Si les données ne sont pas valides on affiche un message d'erreur
+            if ($validData) { 
+                // On enregistre les données dans la session et on redirige l'utilisateur vers la page de création du nouveau mot de passe
+                $_SESSION['id_user'] = $requette['id_user'];
+                $_SESSION['identifiant'] = $requette['identifiant'];
+                $_SESSION['nom']= $requette['nom'];
+                $_SESSION['prenom']= $requette['prenom'];
+                header('Location: newpassword.php');
                 exit;
+            } else { 
+                $dataError = "Données non valides";
+            }            
         }
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -82,6 +65,7 @@ if(!empty($_POST)) {
                 <label for="identifiant">Identifiant :</label><br>
                 <div class="erreur">
                     <?php if(isset($err_identifiant)) { echo $err_identifiant; } ?>
+                    <?php if(isset($dataError)) {echo $dataError;} ?>
                 </div>
                     <input type="text" id="identifiant" name="identifiant"><br>
                 <label for="question">Question de sécurité :</label><br>
