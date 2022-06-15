@@ -106,7 +106,7 @@ if(!isset($nom)) {
                     <option value="choisir">- Choisir une question -</option>
                     <option value="villeParent">Dans quelle ville vos parents se sont-ils rencontrés ?</option>
                     <option value="concert">Quel est le premier concert auquel vous avez assisté ?</option>
-                    <option value="Dans quelle ville êtes-vous né(e) ?">Dans quelle ville êtes-vous né(e) ?</option>
+                    <option value="villeNaissance">Dans quelle ville êtes-vous né(e) ?</option>
                     <option value="2emePrenom">Quel est le deuxième prénom de votre mère ?</option>
                 </select><br>
                 <label for="reponse">Réponse :</label><br>             
