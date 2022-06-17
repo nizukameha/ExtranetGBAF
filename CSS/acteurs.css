@@ -56,6 +56,32 @@ header {
     .gras {
         font-weight: bold;
     }
+    /* Taille, la marge et la couleur de fond des boutons */
+    button {
+        background-color: hsla(0, 100%, 50%, 0.3);
+        border-radius: 5px;
+        padding: 0.5em;
+        margin: 0.3em;
+        font-size: 0.5em;
+        cursor: pointer;
+        width: 20%;
+        font-size: 1em;
+    }
+    .button {
+        text-align: center;
+    }
+    .button a {
+        text-decoration: none;
+        color: black;
+    }
+/* Régler la marge des blocs de saisie de données, les arrondir */
+    input {
+        border: solid 2px;
+        padding: 0.5em;
+        border-radius: 5px;
+        width: 100%;
+        height: 100px;
+	}
 /* --------------------------------------------------------------------------
                                     Mobile
 -----------------------------------------------------------------------------*/
