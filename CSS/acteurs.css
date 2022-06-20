@@ -75,7 +75,7 @@ header {
         color: black;
     }
 /* Régler la marge des blocs de saisie de données, les arrondir */
-    input {
+    textarea {
         border: solid 2px;
         padding: 0.5em;
         border-radius: 5px;
@@ -249,7 +249,7 @@ header {
     }
     /* Dimensions du bloc conteneur */    
     .conteneurActeurs {
-        width: 90%;
+        width: 50%;
     }
     h1, h2, h3 {
         font-size: 2em;
