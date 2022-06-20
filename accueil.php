@@ -10,6 +10,7 @@ if(!isset($_SESSION['id_user'])) {
 $requette = $DB->prepare("SELECT * FROM acteur");
 $requette ->execute(array());
 $acteurs = $requette->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
