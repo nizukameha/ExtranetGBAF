@@ -6,48 +6,6 @@ if(!isset($_SESSION['id_user'])) {
     header('Location: connexion.php');
     exit;
 }
-
-// Afficher les acteurs
-$id_acteur = $_GET['id'];
-    // On récupere toutes les données de la table acteur en fonction de l'id
-    $requette = $DB->prepare("SELECT * FROM acteur WHERE id_acteur = ?" );
-    $requette ->execute(array($_GET['id']));
-    $acteurs = $requette->fetchAll();
-
-// Afficher les commentaires lié a l'utilisateur | INNER JOIN permet de lié plusieurs tables | post p permet d'écrire juste p a la place de post
-$requette = $DB->prepare("SELECT p.*, nom, prenom FROM post p INNER JOIN account a ON a.id_user = p.id_user WHERE p.id_post = ?" );
-// On veux récupérer les commentaires des utilisateurs qui sont lié a cet acteur. Pour cela on précise l'id de l'acteur
-$requette->execute(array($_GET['id']));
-$req_post = $requette->fetchAll();
-
-// Condition qui s'applique lorsque que les input du formulaire sont vides
-if(!empty($_POST)) {
-    var_dump($_POST);
-    // extract permet d'utiliser les 'name' des input
-    extract($_POST);
-    // Cette variable indique que tous les input sont remplis
-    $valid = (boolean) true;
-
-    if(isset($_POST['valider'])) {
-        $post = htmlspecialchars($post);
-        $prenom = $_SESSION['prenom'];
-        $id_user = $_SESSION['id_user'];
-        $date_add = date("d/m/Y");
-        
-
-        if(empty($post)) {
-            $valid = false;
-        }
-        
-        if($valid) {
-            $requette = $DB->prepare("INSERT INTO post (id_user, id_acteur, date_add, post,) VALUES (?, ?, ?, ?)");
-            // On exécute les valeurs présente dans notre tableau
-            $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
-        }
-        //header("location: acteurs.php?id=$$acteur_id");
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -67,6 +25,14 @@ if(!empty($_POST)) {
         <section class="conteneurActeurs">
             <h1>Acteurs et partenaires</h1>
             <?php
+            // Afficher les acteurs
+            $id_acteur = $_GET['id'];
+            // On récupere toutes les données de la table acteur en fonction de l'id
+            $requette = $DB->prepare("SELECT * 
+            FROM acteur 
+            WHERE id_acteur = $id_acteur" );
+            $requette ->execute();
+            $acteurs = $requette->fetchAll();
             // On affiche les acteurs dans une boucle
             foreach ($acteurs as $acteur) {
             ?>
@@ -88,11 +54,23 @@ if(!empty($_POST)) {
             </section>
         <section class="conteneurActeurs">
             <h2>Ajouter un commentaire</h2>
+            <?php
+            // Ajouter des commentaires depuis le site
+            if(isset($_POST['valider'])) {
+                extract($_POST);
+                $id_user = $_SESSION['id_user'];
+                $date_add = date("y.m.d");
+                $post = htmlspecialchars($post);
+                $requette = $DB->prepare("INSERT INTO post(id_user, id_acteur, date_add, post) 
+                VALUES (?, ?, ?, ?)");
+                $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
+            }    
+            ?>
             <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
-                    <label for="post">Commentaire :</label>         
-                        <textarea name="post"></textarea><br>
+                        <label for="post">Commentaire :</label>         
+                            <textarea name="post"></textarea><br>
                         <div class="button">
                             <button type="submit" name="valider">Valider</button>
                         </div>
@@ -104,6 +82,11 @@ if(!empty($_POST)) {
         <section class="conteneurActeurs">
             <h2>Commentaires</h2>
             <?php
+            // Afficher les commentaires lié a l'utilisateur | INNER JOIN permet de lié plusieurs tables | post p permet d'écrire juste p a la place de post
+            $requette = $DB->prepare("SELECT p.*, nom, prenom FROM post p INNER JOIN account a ON a.id_user = p.id_user");
+            // On veux récupérer les commentaires des utilisateurs qui sont lié a cet acteur. Pour cela on précise l'id de l'acteur
+            $requette->execute([$id_acteur]);
+            $req_post = $requette->fetchAll();
                 foreach($req_post as $commentaire) {
             ?>
             <article class="acteur">
@@ -115,6 +98,7 @@ if(!empty($_POST)) {
                     <?= $commentaire['post']; ?>
                 </div>
             </article>
+            <br>
             <?php
                 }
             ?>
