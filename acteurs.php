@@ -82,8 +82,11 @@ if(!isset($_SESSION['id_user'])) {
         <section class="conteneurActeurs">
             <h2>Commentaires</h2>
             <?php
-            // Afficher les commentaires lié a l'utilisateur | INNER JOIN permet de lié plusieurs tables | post p permet d'écrire juste p a la place de post
-            $requette = $DB->prepare("SELECT p.*, nom, prenom FROM post p INNER JOIN account a ON a.id_user = p.id_user");
+            // Afficher les commentaires lié aux utilisateurs et aux acteurs | INNER JOIN permet de lié plusieurs tables |
+            $requette = $DB->prepare("SELECT post.*, prenom, id_acteur FROM post  
+            INNER JOIN account  
+            ON account.id_user = post.id_user
+            WHERE id_acteur = ?");
             // On veux récupérer les commentaires des utilisateurs qui sont lié a cet acteur. Pour cela on précise l'id de l'acteur
             $requette->execute([$id_acteur]);
             $req_post = $requette->fetchAll();
