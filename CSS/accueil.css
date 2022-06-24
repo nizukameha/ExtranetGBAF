@@ -17,9 +17,7 @@ header {
 /* Le soulignement des liens est actif seulement au survol de la souris*/
     a {
         text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
+        color:black;
     }
 /* Centrer le texte du footer */       
     .footer {
@@ -63,7 +61,6 @@ header {
     .illustration {
         width: 100%;
     }
-
 
 /* --------------------------------------------------------------------------
                                     Mobile
