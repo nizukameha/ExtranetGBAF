@@ -6,7 +6,7 @@ session_start();
 try
 {
     $DB = new PDO(
-        'mysql:host=localhost:3307;dbname=gbaf;charset=utf8',
+        'mysql:host=localhost:3306;dbname=gbaf;charset=utf8',
         'root',
         'root'
     );
