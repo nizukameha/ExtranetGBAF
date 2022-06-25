@@ -82,6 +82,18 @@ header {
         width: 100%;
         height: 100px;
 	}
+    .conteneurLike {
+        display: flex;
+        justify-content: center;
+    }
+    .likeButton {
+        width: 20%;
+        margin: 2em;
+    }
+    .likeButton:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        }
 /* --------------------------------------------------------------------------
                                     Mobile
 -----------------------------------------------------------------------------*/
