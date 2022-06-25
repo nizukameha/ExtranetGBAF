@@ -57,7 +57,7 @@ header {
         font-weight: bold;
     }
     /* Taille, la marge et la couleur de fond des boutons */
-    button {
+    .button button {
         background-color: hsla(0, 100%, 50%, 0.3);
         border-radius: 5px;
         padding: 0.5em;
@@ -87,10 +87,24 @@ header {
         justify-content: center;
     }
     .likeButton {
-        width: 20%;
-        margin: 2em;
+        border:none;
+        background-color: transparent;
+        background-repeat:no-repeat;
+        width: 64px;
+        height: 64px;
     }
     .likeButton:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        }
+    .dislikeButton {
+        border:none;
+        background-color: transparent;
+        background-repeat:no-repeat;
+        width: 64px;
+        height: 64px;
+    }
+    .dislikeButton:hover {
         transform: scale(1.1);
         cursor: pointer;
         }
