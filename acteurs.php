@@ -51,9 +51,32 @@ if(!isset($_SESSION['id_user'])) {
             <?php
             }
             ?>
-            </section>
+        </section>
         <section class="conteneurActeurs">
             <h2>Que pensez-vous de cet acteur ?</h2>
+            <?php
+            if(isset($_POST['like'])) {
+                extract($_POST);
+                $id_user = $_SESSION['id_user'];
+                $vote = 1;
+                $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
+                VALUES (?, ?, ?)");
+                $requette ->execute(array($id_user, $id_acteur, $vote));
+            } elseif(isset($_POST['dislike'])) {
+                extract($_POST);
+                $id_user = $_SESSION['id_user'];
+                $vote = 0;
+                $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
+                VALUES (?, ?, ?)");
+                $requette ->execute(array($id_user, $id_acteur, $vote));
+            }
+            ?>
+            <div class="conteneurLike">
+                <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
+                    <button type="submit" class="likeButton" name="like"><img src="IMG/like.png"></button>
+                    <button type="submit" class="dislikeButton" name="dislike"><img src="IMG/dislike.png"></button>
+                </form>
+            </div><br>
             <?php
             // Ajouter des commentaires depuis le site
             if(isset($_POST['valider'])) {
@@ -66,12 +89,6 @@ if(!isset($_SESSION['id_user'])) {
                 $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
             }    
             ?>
-            <div class="conteneurLike">
-                <form method="post">
-                    <input type="image" src="IMG\like.png" class=likeButton name="like"></input>
-                    <input type="image" src="IMG\dislike.png" class=likeButton name="dislike"></input>
-                </form>
-            </div><br>
                 <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
