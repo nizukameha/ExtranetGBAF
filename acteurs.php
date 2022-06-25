@@ -53,7 +53,7 @@ if(!isset($_SESSION['id_user'])) {
             ?>
             </section>
         <section class="conteneurActeurs">
-            <h2>Ajouter un commentaire</h2>
+            <h2>Que pensez-vous de cet acteur ?</h2>
             <?php
             // Ajouter des commentaires depuis le site
             if(isset($_POST['valider'])) {
@@ -66,7 +66,13 @@ if(!isset($_SESSION['id_user'])) {
                 $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
             }    
             ?>
-            <article class="acteur">
+            <div class="conteneurLike">
+                <form method="post">
+                    <input type="image" src="IMG\like.png" class=likeButton name="like"></input>
+                    <input type="image" src="IMG\dislike.png" class=likeButton name="dislike"></input>
+                </form>
+            </div><br>
+                <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
                         <label for="post">Commentaire :</label>         
