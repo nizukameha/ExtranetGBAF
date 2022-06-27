@@ -78,17 +78,40 @@ if(!isset($_SESSION['id_user'])) {
                 </form>
             </div><br>
             <?php
-            // Ajouter des commentaires depuis le site
+            // Lorsque l'utilisateur valide le formulaire
             if(isset($_POST['valider'])) {
-                extract($_POST);
-                $id_user = $_SESSION['id_user'];
-                $date_add = date("y.m.d");
-                $post = htmlspecialchars($post);
-                $requette = $DB->prepare("INSERT INTO post(id_user, id_acteur, date_add, post) 
-                VALUES (?, ?, ?, ?)");
-                $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
-            }    
+                // Vérification que le commentaire n'est pas vide
+                if(empty($_POST['post'])) {
+                    $errVide = "Votre commentaire est vide !";
+                // Vérification que l'utilisateur n'a pas déjà commenté
+                } else {
+                    // Selectionne l'id_user correspondant a l'id_user de la session pour cet acteur
+                    $requette = $DB->prepare("SELECT id_user, id_acteur FROM post WHERE id_user = ? AND id_acteur = ?");
+                    $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                    // fetch et non pas fetchAll car on veut une valeur
+                    $requette = $requette->fetch();
+                    // Si la requette est vrai c'est que l'utilisateur a déjà commenté
+                    if($requette) {
+                    $errUser = "Vous avez déjà commenté pour cet acteur !";
+                    // Si il n'a jamais commenté, on ajoute son commentaire a la bdd
+                    } else {
+                        // Récupere les données
+                        extract($_POST);
+                        $id_user = $_SESSION['id_user'];
+                        $date_add = date("y.m.d");
+                        $post = htmlspecialchars($post);
+                        // Ajout a la base de donnée
+                        $requette = $DB->prepare("INSERT INTO post(id_user, id_acteur, date_add, post) 
+                        VALUES (?, ?, ?, ?)");
+                        $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
+                    }
+                }
+            }
             ?>
+            <div class="erreur">
+                <?php if (isset($errVide)) { echo $errVide; } ?>
+                <?php if (isset($errUser)) { echo $errUser; } ?>
+            </div><br>
                 <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
