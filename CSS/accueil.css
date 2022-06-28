@@ -1,10 +1,30 @@
 /* --------------------------------------------------------------------------
                                     All
 -----------------------------------------------------------------------------*/
+body {
+    margin: 0;
+}
 header {
     background-color: rgb(230, 230, 230);
 }
-
+.parametre {
+    margin-top: 20px;
+    width: 30px;
+    height: 30px;
+}
+.parametre:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    }
+    .deconnexion {
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+    }
+    .deconnexion:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
 /* Couleur et épaisseur des traits de séparation */
     hr {
         border: solid 1px;
@@ -61,7 +81,6 @@ header {
     .illustration {
         width: 100%;
     }
-
 /* --------------------------------------------------------------------------
                                     Mobile
 -----------------------------------------------------------------------------*/
@@ -75,14 +94,17 @@ header {
         margin-right: 5%;
     }
 /* Dimension du logo */
-    .logo {
-        width: 20%;
-    }
+.logo {
+    width: 100px;
+    height: 130px;
+    margin-top: 20px;
+}
 /* Dimension du texte */    
-    .utilisateur {
-        font-size: 1.2em;
-        margin-top: 35px;
-    }
+.utilisateur {
+    font-size: 1.2em;
+    margin-top: 70px;
+    margin-right: 30px;
+}
 /* Dimensions du bloc de presentation */    
     .conteneurPresentation {
         width: 90%;
@@ -112,15 +134,6 @@ header {
         background-color: hsla(0, 100%, 50%, 0.3);
         cursor: pointer;
     }
-    .parametre {
-        width: 30px;
-        height: 30px;
-    }
-    .deconnexion {
-        width: 30px;
-        height: 30px;
-        margin-top: 20px;
-    }
     .icon {
         display: flex;
         flex-direction: column;
@@ -141,14 +154,17 @@ header {
         margin-right: 5%;
     }
 /* Dimension du logo */    
-    .logo {
-        width: 10%;
-    }
+.logo {
+    width: 100px;
+    height: 130px;
+    margin-top: 20px;
+}
 /* Dimension du texte et marge haute pour centrer verticalement */     
-    .utilisateur {
-        font-size: 1.2em;
-        margin-top: 5%;
-    }
+.utilisateur {
+    font-size: 1.5em;
+    margin-top: 75px;
+    margin-right: 40px;
+}
 /* Dimensions du bloc de presentation */    
     .conteneurPresentation {
         width: 90%;
@@ -190,15 +206,6 @@ header {
         padding: 0.3em;
         background-color: hsla(0, 100%, 50%, 0.3);
         cursor: pointer;
-    }
-    .parametre {
-        width: 30px;
-        height: 30px;
-    }
-    .deconnexion {
-        width: 30px;
-        height: 30px;
-        margin-top: 20px;
     }
     .icon {
         display: flex;
@@ -254,30 +261,17 @@ header {
 
     /* Dimension du logo */    
     .logo {
-        width: 5%;
-    }
-/* Dimension du texte et marge haute pour centrer verticalement */     
-    .utilisateur {
-        font-size: 2em;
-        margin-top: 2%;
-    }
-    .parametre {
-        width: 30px;
-        height: 30px;
-    }
-    .parametre:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-        }
-    .deconnexion {
-        width: 30px;
-        height: 30px;
+        width: 100px;
+        height: 130px;
         margin-top: 20px;
     }
-    .deconnexion:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-    }
+/* Dimension du texte et marge haute pour centrer verticalement */     
+.utilisateur {
+    font-size: 2em;
+    margin-top: 70px;
+    margin-right: 70px;
+}
+    
     .icon {
         display: flex;
         flex-direction: column;
