@@ -43,7 +43,7 @@ header {
         margin: 1em;
     }
 /* Dimensions, marge du texte centré */    
-    .descriptionActeur, p {
+    p.descriptionActeur {
         text-align: justify;
         margin: 0 auto;
         padding: 1em;
