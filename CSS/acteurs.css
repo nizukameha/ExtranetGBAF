@@ -100,7 +100,7 @@ header {
         border: solid 2px;
         padding: 0.5em;
         border-radius: 5px;
-        width: 100%;
+        width: 98%;
         height: 100px;
 	}
     .conteneurLike {
@@ -176,6 +176,13 @@ header {
         flex-direction: column;
         justify-content: center;
     }
+    textarea {
+        border: solid 2px;
+        padding: 0.5em;
+        border-radius: 5px;
+        width: 90%;
+        height: 100px;
+	}
 }
 
 /* --------------------------------------------------------------------------
@@ -250,6 +257,13 @@ header {
         text-align: justify;
         margin-left: 3em;
     }
+    textarea {
+        border: solid 2px;
+        padding: 0.5em;
+        border-radius: 5px;
+        width: 99%;
+        height: 100px;
+	}
 }
 /* --------------------------------------------------------------------------
                             Ordinateur de bureau
