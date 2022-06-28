@@ -10,6 +10,7 @@
         }?>
     </p>
     <div class="icon">
+        <a href="accueil.php"><img class='deconnexion' src="IMG/home.png" alt="deconnexion"></a>
         <a href="parametre.php"><img class='parametre' src="IMG/parametre.png" alt="parametre"></a>
         <a href="deconnexion.php"><img class='deconnexion' src="IMG/deconnexion.png" alt="deconnexion"></a>
     </div> 
