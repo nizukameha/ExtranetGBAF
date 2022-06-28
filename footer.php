@@ -1,1 +1,1 @@
-<p class="footer"><a href="mentionslegales.html">Mentions légales</a> | <a href="contact.html">Contact</a></p>
+<p class="footer"><a href="mentionslegales.php">Mentions légales</a> | <a href="contact.php">Contact</a></p>
