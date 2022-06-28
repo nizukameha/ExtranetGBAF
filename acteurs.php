@@ -90,8 +90,8 @@ if(!isset($_SESSION['id_user'])) {
                     <button type="submit" class="likeButton" name="like"><img src="IMG/like.png">
                         <?php
                             $like = 1;
-                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ?");
-                            $requette->execute(array($like));
+                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
+                            $requette->execute(array($like, $id_acteur));
                             $votes = $requette->rowCount();
                             echo $votes;
                         ?>
@@ -99,8 +99,8 @@ if(!isset($_SESSION['id_user'])) {
                     <button type="submit" class="dislikeButton" name="dislike"><img src="IMG/dislike.png">
                         <?php
                             $dislike = 0;
-                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ?");
-                            $requette->execute(array($dislike));
+                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
+                            $requette->execute(array($dislike, $id_acteur));
                             $votes = $requette->rowCount();
                             echo $votes;
                         ?>
