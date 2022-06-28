@@ -149,4 +149,8 @@ if(!empty($_POST)) {
             </form>
         </section>
     </body>
+    <hr>
+    <footer>
+    <?php include('footer.php'); ?>
+    </footer>
 </html>
