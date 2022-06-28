@@ -56,25 +56,55 @@ if(!isset($_SESSION['id_user'])) {
             <h2>Que pensez-vous de cet acteur ?</h2>
             <?php
             if(isset($_POST['like'])) {
+                $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
+                $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                $requette = $requette->fetch();
+                if($requette) {
+                $errVote = "Vous avez déjà voté pour cet acteur !";
+                } else {
                 extract($_POST);
                 $id_user = $_SESSION['id_user'];
                 $vote = 1;
                 $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
                 VALUES (?, ?, ?)");
                 $requette ->execute(array($id_user, $id_acteur, $vote));
+                }
             } elseif(isset($_POST['dislike'])) {
+                $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
+                $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                $requette = $requette->fetch();
+                if($requette) {
+                $errVote = "Vous avez déjà voté pour cet acteur !";
+                } else {
                 extract($_POST);
                 $id_user = $_SESSION['id_user'];
                 $vote = 0;
                 $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
                 VALUES (?, ?, ?)");
                 $requette ->execute(array($id_user, $id_acteur, $vote));
+                }
             }
             ?>
             <div class="conteneurLike">
                 <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
-                    <button type="submit" class="likeButton" name="like"><img src="IMG/like.png"></button>
-                    <button type="submit" class="dislikeButton" name="dislike"><img src="IMG/dislike.png"></button>
+                    <button type="submit" class="likeButton" name="like"><img src="IMG/like.png">
+                        <?php
+                            $like = 1;
+                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ?");
+                            $requette->execute(array($like));
+                            $votes = $requette->rowCount();
+                            echo $votes;
+                        ?>
+                    </button>
+                    <button type="submit" class="dislikeButton" name="dislike"><img src="IMG/dislike.png">
+                        <?php
+                            $dislike = 0;
+                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ?");
+                            $requette->execute(array($dislike));
+                            $votes = $requette->rowCount();
+                            echo $votes;
+                        ?>
+                    </button>
                 </form>
             </div><br>
             <?php
@@ -111,6 +141,7 @@ if(!isset($_SESSION['id_user'])) {
             <div class="erreur">
                 <?php if (isset($errVide)) { echo $errVide; } ?>
                 <?php if (isset($errUser)) { echo $errUser; } ?>
+                <?php if (isset($errVote)) { echo $errVote; } ?>
             </div><br>
                 <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
