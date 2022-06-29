@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------*/
 body {
     margin: 0;
-    background: linear-gradient(90deg, rgba(255, 0, 0, 0.3), transparent, white, transparent, rgba(255, 0, 0, 0.3));
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.2), transparent, white, transparent, rgba(255, 0, 0, 0.2));
 }
 header {
     background: white;
