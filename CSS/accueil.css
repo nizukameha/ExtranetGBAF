@@ -6,7 +6,7 @@ body {
     background: linear-gradient(90deg, rgba(255, 0, 0, 0.2), transparent, white, transparent, rgba(255, 0, 0, 0.2));
 }
 header {
-    background: white;
+    background-color: rgb(230, 230, 230);
 }
 .parametre {
     margin-top: 20px;
@@ -113,10 +113,11 @@ header {
 /* Dimensions du bloc conteneur */    
     .conteneurActeurs {
         width: 90%;
+        text-align: center;
     }
 /* Center le bloc conteneur et définir ses dimensions */    
-    .conteneurActeurs {
-        text-align: center;
+    .conteneurDescriptionBoutton {
+        margin-bottom: 1em;
     }
 /* Dimension du logo des acteurs */    
     .logoActeurs {
