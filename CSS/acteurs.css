@@ -2,6 +2,7 @@
                                     All
 -----------------------------------------------------------------------------*/
 body {
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.2), transparent, white, transparent, rgba(255, 0, 0, 0.2));
     margin: 0;
 }
 
