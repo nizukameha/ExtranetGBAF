@@ -63,6 +63,7 @@ header {
     .logoActeurs {
         width: 95%;
         margin: 1em;
+        border-radius: 5px;
     }
 /* Dimensions, marge du texte centré */    
     p.descriptionActeur {
@@ -101,8 +102,11 @@ header {
         border: solid 2px;
         padding: 0.5em;
         border-radius: 5px;
-        width: 98%;
-        height: 100px;
+        max-width: 98%;
+        min-width: 98%;
+        max-height: 200px;
+        min-height: 100px;
+
 	}
     .conteneurLike {
         display: flex;
@@ -112,8 +116,10 @@ header {
         border:none;
         background-color: transparent;
         background-repeat:no-repeat;
-        width: 64px;
-        height: 64px;
+        width: 40px;
+    }
+    .likeImage {
+        width: 34px;
     }
     .likeButton:hover {
         transform: scale(1.1);
@@ -123,8 +129,7 @@ header {
         border:none;
         background-color: transparent;
         background-repeat:no-repeat;
-        width: 64px;
-        height: 64px;
+        width: 40px;
     }
     .dislikeButton:hover {
         transform: scale(1.1);
