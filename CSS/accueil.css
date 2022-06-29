@@ -66,6 +66,7 @@ header {
         margin-top: 1em;;
         text-align:center;
         max-width: 300px;
+        border-radius: 5px;
     }
 /* Dimensions, marge du texte centré */    
     .descriptionActeur {
@@ -81,6 +82,7 @@ header {
 /* L'image d'illustration occupe 100% de son bloc conteneur */    
     .illustration {
         width: 100%;
+        border-radius: 5px;
     }
 /* --------------------------------------------------------------------------
                                     Mobile
