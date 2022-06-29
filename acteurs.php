@@ -85,9 +85,11 @@ if(!isset($_SESSION['id_user'])) {
                 }
             }
             ?>
+            <article class="acteur">
+                <div class="conteneurDescriptionBoutton">
             <div class="conteneurLike">
                 <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
-                    <button type="submit" class="likeButton" name="like"><img src="IMG/like.png">
+                    <button type="submit" class="likeButton" name="like"><img class="likeImage" src="IMG/like.png">
                         <?php
                             $like = 1;
                             $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
@@ -96,7 +98,7 @@ if(!isset($_SESSION['id_user'])) {
                             echo $votes;
                         ?>
                     </button>
-                    <button type="submit" class="dislikeButton" name="dislike"><img src="IMG/dislike.png">
+                    <button type="submit" class="dislikeButton" name="dislike"><img class="likeImage" src="IMG/dislike.png">
                         <?php
                             $dislike = 0;
                             $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
@@ -106,7 +108,7 @@ if(!isset($_SESSION['id_user'])) {
                         ?>
                     </button>
                 </form>
-            </div><br>
+            </div>
             <?php
             // Lorsque l'utilisateur valide le formulaire
             if(isset($_POST['valider'])) {
@@ -143,10 +145,9 @@ if(!isset($_SESSION['id_user'])) {
                 <?php if (isset($errUser)) { echo $errUser; } ?>
                 <?php if (isset($errVote)) { echo $errVote; } ?>
             </div><br>
-                <article class="acteur">
-                <div class="conteneurDescriptionBoutton">
+                
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
-                        <label for="post">Commentaire :</label>         
+                        <label for="post">Commentaire :</label>
                             <textarea name="post"></textarea><br>
                         <div class="button">
                             <button type="submit" name="valider">Valider</button>
@@ -171,10 +172,16 @@ if(!isset($_SESSION['id_user'])) {
             ?>
             <article class="acteur">
                 <div class="conteneurDescriptionBoutton">
+                    Posté par :
                     <span class="gras">
-                        <?= $commentaire['prenom']; ?><br>
-                        <?= $commentaire['date_add']; ?><br>
+                        <?= $commentaire['prenom']; ?>
                     </span>
+                    le :
+                    <span class="gras">   
+                        <?= $commentaire['date_add']; ?>
+                    </span>
+                    <br>
+                    <br>
                     <?= $commentaire['post']; ?>
                 </div>
             </article>
