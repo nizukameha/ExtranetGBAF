@@ -92,7 +92,7 @@ if(!isset($nom)) {
         <section class="conteneurImage">
             <img class='logoOpacity' src="IMG/logoGBAF.jpg" alt="Logo GBAF">
             <form method="post">
-                <h1>Paramètre</h1><br>
+                <h1>Paramètres du compte</h1><br>
                 <label for="nom">Nom :</label><br>             
                     <input type="text" name="nom" value ="<?= $nom ?>" required><br>
                 <label for="prenom">Prénom :</label><br>             
