@@ -53,7 +53,12 @@ if(!isset($_SESSION['id_user'])) {
         </section>
         <section class="conteneurActeurs">
             <div class="conteneurNewComment">
-                <span class="titreMobile>"><h2>X commentaires</h2></span>
+                <?php
+                $requette = $DB->prepare("SELECT post FROM post WHERE id_acteur = ?");
+                $requette->execute(array($id_acteur));
+                $post = $requette->rowCount();
+                ?>
+                <span class="titreMobile>"><h2><?= $post; ?> commentaires</h2></span>
                 <div class="divNewComment">
                     <p><a href="#newcomment" class="newComment">Nouveau commentaire</a></p>
                 </div>
@@ -89,26 +94,27 @@ if(!isset($_SESSION['id_user'])) {
                 }
                 ?>
                 <div class="conteneurLike">
-                <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
-                    <button type="submit" class="likeButton" name="like"><img class="likeImage" src="IMG/like.png">
-                        <?php
-                            $like = 1;
-                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
-                            $requette->execute(array($like, $id_acteur));
-                            $votes = $requette->rowCount();
-                            echo $votes;
-                        ?>
-                    </button>
-                    <button type="submit" class="dislikeButton" name="dislike"><img class="likeImage" src="IMG/dislike.png">
-                        <?php
-                            $dislike = 0;
-                            $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
-                            $requette->execute(array($dislike, $id_acteur));
-                            $votes = $requette->rowCount();
-                            echo $votes;
-                        ?>
-                    </button>
-                </form>
+                    <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
+                        <button type="submit" class="likeButton" name="like"><img class="likeImage" src="IMG/like.png">
+                            <?php
+                                $like = 1;
+                                $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
+                                $requette->execute(array($like, $id_acteur));
+                                $votes = $requette->rowCount();
+                                echo $votes;
+                            ?>
+                        </button>
+                        <button type="submit" class="dislikeButton" name="dislike"><img class="likeImage" src="IMG/dislike.png">
+                            <?php
+                                $dislike = 0;
+                                $requette = $DB->prepare("SELECT vote FROM vote WHERE vote = ? AND id_acteur = ?");
+                                $requette->execute(array($dislike, $id_acteur));
+                                $votes = $requette->rowCount();
+                                echo $votes;
+                            ?>
+                        </button>
+                    </form>
+                </div>
                 <br>
                 <div class="erreur">
                     <?php if (isset($errVote)) { echo $errVote; } ?>
@@ -162,7 +168,6 @@ if(!isset($_SESSION['id_user'])) {
                 </div>
         </div>
             </article>
-        </section>
         </section>
         <section class="conteneurActeurs">
                     
