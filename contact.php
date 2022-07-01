@@ -14,7 +14,7 @@ if(isset($_POST['valider'])) {
             $requette->execute(array($emailUtilisateur, $post));
             $emailSend = "Votre demande de contact a été envoyé";
         } else {
-            $badEmail = "Cet email n'existe pas !";
+            $badEmail = "Cet email n'est pas valide !";
         }
 
     } else {
@@ -58,5 +58,9 @@ if(isset($_POST['valider'])) {
                 <?php if(isset($emailSend)) { echo $emailSend; } ?>
             </form>
         </section>
+        <hr>
+        <footer>
+            <?php include('footer.php'); ?>
+        </footer>
     </body>
 </html>
