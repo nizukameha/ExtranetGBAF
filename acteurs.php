@@ -23,7 +23,6 @@ if(!isset($_SESSION['id_user'])) {
         </header>
         <!-- Bloc qui contient tous les acteurs -->
         <section class="conteneurActeurs">
-            <h1>Acteurs et partenaires</h1>
             <?php
             // Afficher les acteurs
             $id_acteur = $_GET['id'];
@@ -53,41 +52,43 @@ if(!isset($_SESSION['id_user'])) {
             ?>
         </section>
         <section class="conteneurActeurs">
-            <h2>Que pensez-vous de cet acteur ?</h2>
-            <?php
-            if(isset($_POST['like'])) {
-                $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
-                $requette->execute(array($_SESSION['id_user'], $id_acteur));
-                $requette = $requette->fetch();
-                if($requette) {
-                $errVote = "Vous avez déjà voté pour cet acteur !";
-                } else {
-                extract($_POST);
-                $id_user = $_SESSION['id_user'];
-                $vote = 1;
-                $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
-                VALUES (?, ?, ?)");
-                $requette ->execute(array($id_user, $id_acteur, $vote));
+            <div class="conteneurNewComment">
+                <span class="titreMobile>"><h2>X commentaires</h2></span>
+                <div class="divNewComment">
+                    <p><a href="#newcomment" class="newComment">Nouveau commentaire</a></p>
+                </div>
+                <?php
+                if(isset($_POST['like'])) {
+                    $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
+                    $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                    $requette = $requette->fetch();
+                    if($requette) {
+                    $errVote = "Vous avez déjà voté pour cet acteur !";
+                    } else {
+                    extract($_POST);
+                    $id_user = $_SESSION['id_user'];
+                    $vote = 1;
+                    $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
+                    VALUES (?, ?, ?)");
+                    $requette ->execute(array($id_user, $id_acteur, $vote));
+                    }
+                } elseif(isset($_POST['dislike'])) {
+                    $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
+                    $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                    $requette = $requette->fetch();
+                    if($requette) {
+                    $errVote = "Vous avez déjà voté pour cet acteur !";
+                    } else {
+                    extract($_POST);
+                    $id_user = $_SESSION['id_user'];
+                    $vote = 0;
+                    $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
+                    VALUES (?, ?, ?)");
+                    $requette ->execute(array($id_user, $id_acteur, $vote));
+                    }
                 }
-            } elseif(isset($_POST['dislike'])) {
-                $requette = $DB->prepare("SELECT id_user, id_acteur FROM vote WHERE id_user = ? AND id_acteur = ?");
-                $requette->execute(array($_SESSION['id_user'], $id_acteur));
-                $requette = $requette->fetch();
-                if($requette) {
-                $errVote = "Vous avez déjà voté pour cet acteur !";
-                } else {
-                extract($_POST);
-                $id_user = $_SESSION['id_user'];
-                $vote = 0;
-                $requette = $DB->prepare("INSERT INTO vote(id_user, id_acteur, vote) 
-                VALUES (?, ?, ?)");
-                $requette ->execute(array($id_user, $id_acteur, $vote));
-                }
-            }
-            ?>
-            <article class="acteur">
-                <div class="conteneurDescriptionBoutton">
-            <div class="conteneurLike">
+                ?>
+                <div class="conteneurLike">
                 <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
                     <button type="submit" class="likeButton" name="like"><img class="likeImage" src="IMG/like.png">
                         <?php
@@ -108,44 +109,49 @@ if(!isset($_SESSION['id_user'])) {
                         ?>
                     </button>
                 </form>
+                <br>
+                <div class="erreur">
+                    <?php if (isset($errVote)) { echo $errVote; } ?>
+                </div>
             </div>
-            <?php
-            // Lorsque l'utilisateur valide le formulaire
-            if(isset($_POST['valider'])) {
-                // Vérification que le commentaire n'est pas vide
-                if(empty($_POST['post'])) {
-                    $errVide = "Votre commentaire est vide !";
-                // Vérification que l'utilisateur n'a pas déjà commenté
-                } else {
-                    // Selectionne l'id_user correspondant a l'id_user de la session pour cet acteur
-                    $requette = $DB->prepare("SELECT id_user, id_acteur FROM post WHERE id_user = ? AND id_acteur = ?");
-                    $requette->execute(array($_SESSION['id_user'], $id_acteur));
-                    // fetch et non pas fetchAll car on veut une valeur
-                    $requette = $requette->fetch();
-                    // Si la requette est vrai c'est que l'utilisateur a déjà commenté
-                    if($requette) {
-                    $errUser = "Vous avez déjà commenté pour cet acteur !";
-                    // Si il n'a jamais commenté, on ajoute son commentaire a la bdd
-                    } else {
-                        // Récupere les données
-                        extract($_POST);
-                        $id_user = $_SESSION['id_user'];
-                        $date_add = date("y.m.d");
-                        $post = htmlspecialchars($post);
-                        // Ajout a la base de donnée
-                        $requette = $DB->prepare("INSERT INTO post(id_user, id_acteur, date_add, post) 
-                        VALUES (?, ?, ?, ?)");
-                        $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
+        <div id="newcomment">
+            <article class="acteur">
+                <div class="conteneurDescriptionBoutton">
+                    <?php
+                    // Lorsque l'utilisateur valide le formulaire
+                    if(isset($_POST['valider'])) {
+                        // Vérification que le commentaire n'est pas vide
+                        if(empty($_POST['post'])) {
+                            $errVide = "Votre commentaire est vide !";
+                        // Vérification que l'utilisateur n'a pas déjà commenté
+                        } else {
+                            // Selectionne l'id_user correspondant a l'id_user de la session pour cet acteur
+                            $requette = $DB->prepare("SELECT id_user, id_acteur FROM post WHERE id_user = ? AND id_acteur = ?");
+                            $requette->execute(array($_SESSION['id_user'], $id_acteur));
+                            // fetch et non pas fetchAll car on veut une valeur
+                            $requette = $requette->fetch();
+                            // Si la requette est vrai c'est que l'utilisateur a déjà commenté
+                            if($requette) {
+                            $errUser = "Vous avez déjà commenté pour cet acteur !";
+                            // Si il n'a jamais commenté, on ajoute son commentaire a la bdd
+                            } else {
+                                // Récupere les données
+                                extract($_POST);
+                                $id_user = $_SESSION['id_user'];
+                                $date_add = date("y.m.d");
+                                $post = htmlspecialchars($post);
+                                // Ajout a la base de donnée
+                                $requette = $DB->prepare("INSERT INTO post(id_user, id_acteur, date_add, post) 
+                                VALUES (?, ?, ?, ?)");
+                                $requette ->execute(array($id_user, $id_acteur, $date_add, $post));
+                            }
+                        }
                     }
-                }
-            }
-            ?>
-            <div class="erreur">
-                <?php if (isset($errVide)) { echo $errVide; } ?>
-                <?php if (isset($errUser)) { echo $errUser; } ?>
-                <?php if (isset($errVote)) { echo $errVote; } ?>
-            </div><br>
-                
+                    ?>
+                    <div class="erreur">
+                        <?php if (isset($errVide)) { echo $errVide; } ?>
+                        <?php if (isset($errUser)) { echo $errUser; } ?>
+                    </div><br>
                     <form action="acteurs.php?id=<?= $_GET['id'] ?>" method="post">
                         <label for="post">Commentaire :</label>
                             <textarea name="post"></textarea><br>
@@ -154,42 +160,42 @@ if(!isset($_SESSION['id_user'])) {
                         </div>
                     </form>
                 </div>
+        </div>
             </article>
         </section>
         </section>
         <section class="conteneurActeurs">
-            <h2>Commentaires</h2>
-            <?php
-            // Afficher les commentaires lié aux utilisateurs et aux acteurs | INNER JOIN permet de lié plusieurs tables |
-            $requette = $DB->prepare("SELECT post.*, prenom, id_acteur FROM post  
-            INNER JOIN account  
-            ON account.id_user = post.id_user
-            WHERE id_acteur = ?");
-            // On veux récupérer les commentaires des utilisateurs qui sont lié a cet acteur. Pour cela on précise l'id de l'acteur
-            $requette->execute([$id_acteur]);
-            $req_post = $requette->fetchAll();
-                foreach($req_post as $commentaire) {
-            ?>
-            <article class="acteur">
-                <div class="conteneurDescriptionBoutton">
-                    Posté par :
-                    <span class="gras">
-                        <?= $commentaire['prenom']; ?>
-                    </span>
-                    le :
-                    <span class="gras">   
-                        <?= $commentaire['date_add']; ?>
-                    </span>
+                    
+                    <?php
+                    // Afficher les commentaires lié aux utilisateurs et aux acteurs | INNER JOIN permet de lié plusieurs tables |
+                    $requette = $DB->prepare("SELECT post.*, prenom, id_acteur FROM post  
+                    INNER JOIN account  
+                    ON account.id_user = post.id_user
+                    WHERE id_acteur = ?");
+                    // On veux récupérer les commentaires des utilisateurs qui sont lié a cet acteur. Pour cela on précise l'id de l'acteur
+                    $requette->execute([$id_acteur]);
+                    $req_post = $requette->fetchAll();
+                        foreach($req_post as $commentaire) {
+                    ?>
+                    <article class="acteur">
+                        <div class="conteneurDescriptionBoutton">
+                            <span class="gras">
+                                <?= $commentaire['prenom']; ?>
+                            </span>
+                            <br>
+                            <span class="gras">   
+                                <?= $commentaire['date_add']; ?>
+                            </span>
+                            <br>
+                            <br>
+                            <?= $commentaire['post']; ?>
+                        </div>
+                    </article>
                     <br>
-                    <br>
-                    <?= $commentaire['post']; ?>
-                </div>
-            </article>
-            <br>
-            <?php
-                }
-            ?>
-        </section>
+                    <?php
+                        }
+                    ?>
+    </section>
         <hr>
         <footer>
             <?php include('footer.php'); ?>
