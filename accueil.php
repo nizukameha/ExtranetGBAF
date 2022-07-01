@@ -38,6 +38,7 @@ $acteurs = $requette->fetchAll();
         <!-- Bloc qui contient tous les acteurs -->
         <section class="conteneurActeurs">
             <h2>Acteurs et partenaires</h2>
+            <p class="descriptionActeurEtPartenaire">texte acteurs et partenaires ...</p>
             <?php
             // On affiche les données dans une boucle
             foreach ($acteurs as $acteur) {
@@ -48,12 +49,12 @@ $acteurs = $requette->fetchAll();
                     <p class="descriptionActeur">
                         <span class="gras">
                             <?= $acteur['acteur']; ?>
-                        </span>
+                        </span><br>
                         <?= substr($acteur['description'], 0, 60); ?>...
-                    </p>
+                    
                     <!-- Le bouton permet de récupérer l'id correspondant a l'acteur et de l'envoyer dans l'url -->
                     <div class="boutonSuite">
-                        <a href="acteurs.php?id=<?= $acteur['id_acteur'] ?>">En savoir plus</a>
+                        <a href="acteurs.php?id=<?= $acteur['id_acteur'] ?>">lire la suite</a>
                     </div>
                 </div>
             </article>
