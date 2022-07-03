@@ -287,6 +287,9 @@ header {
 -----------------------------------------------------------------------------*/
 @media screen and (min-width: 1024px) {
 
+    .divNewComment {
+        margin-left: 500px;
+    }
 /* Dimension du logo des acteurs */    
     .logoActeurs {
         margin: 3em;;
@@ -319,6 +322,9 @@ header {
 -----------------------------------------------------------------------------*/
 @media screen and (min-width: 1440px) {
 
+    .divNewComment {
+        margin-left: 650px;
+    }
     /* Dimension du logo */    
     .logo {
         width: 100px;
@@ -337,7 +343,7 @@ header {
     }
     /* Dimensions du bloc conteneur */    
     .conteneurActeurs {
-        width: 50%;
+        width: 60%;
     }
     h1, h2, h3 {
         font-size: 2em;
