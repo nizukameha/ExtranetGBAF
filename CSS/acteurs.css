@@ -227,8 +227,9 @@ header {
         border: solid 2px;
         padding: 0.5em;
         border-radius: 5px;
-        width: 90%;
-        height: 100px;
+        min-width: 300px;
+        max-width: 340px;
+        min-height: 100px;
 	}
 }
 
@@ -300,10 +301,9 @@ header {
         width: 95%;
         margin:1em
     }
-    
 /* Dimensions, marge du texte centré */    
     .descriptionActeur {
-        text-align: justify;
+        text-align: left;
     }
     ul {
         text-align: justify;
