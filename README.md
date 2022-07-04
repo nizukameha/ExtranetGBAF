@@ -25,7 +25,7 @@ des financeurs, entre autres. Aujourd’hui, il n’existe pas de base de donné
 * PHP 7.4.1
 * MySQL 5.7.24
 
-### Software :
+### Software
 * MAMP 4.2.0 
 * phpMyAdmin 4.9.5
 * VScode
