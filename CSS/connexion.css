@@ -14,6 +14,13 @@
                                     All
 -----------------------------------------------------------------------------*/
 
+body {
+    margin: 0;
+}
+hr {
+    border: solid 1px;
+    border-color:hsla(0, 100%, 50%);
+}
 /* Ombre du titre */    
     h1 {
         font-size: 2em;
@@ -25,6 +32,9 @@
     }
     a:hover {
         text-decoration: underline;
+    }
+    header {
+        background-color: rgb(230, 230, 230);
     }
 /* Placer le formulaire de connexion au centre */ 
     form {
@@ -92,7 +102,9 @@
     }
 /* Dimension du logo */
     .logo {
-        width: 20%;
+        width: 100px;
+        height: 130px;
+        margin-top: 20px;
     }
 /* Centrer le texte du footer */       
     .footer {
@@ -125,11 +137,15 @@
 
     .conteneurHeader {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 /* Dimension du logo */
     .logo {
-        width: 10%;
+        width: 100px;
+        height: 130px;
+        margin-top: 20px;
     }
 /* Centrer le texte du footer */       
     .footer {
@@ -171,13 +187,11 @@
 -----------------------------------------------------------------------------*/
 @media screen and (min-width: 1440px) {
 
-    .conteneurHeader {
-        display: flex;
-        justify-content: center;
-    }
 /* Dimension du logo */
     .logo {
-        width: 8%;
+        width: 100px;
+        height: 130px;
+        margin-top: 20px;
     }
 /* Dimension du formulaire */
     .conteneurImage {
