@@ -116,9 +116,9 @@ if(!isset($_SESSION['id_user'])) {
                     </form>
                 </div>
                 <br>
-                <div class="erreur">
-                    <?php if (isset($errVote)) { echo $errVote; } ?>
-                </div>
+            </div>
+            <div class="erreur">
+                <?php if (isset($errVote)) { echo $errVote; } ?>
             </div>
         <div id="newcomment">
             <article class="acteur">
