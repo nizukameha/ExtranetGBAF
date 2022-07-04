@@ -116,6 +116,7 @@ if(!isset($nom)) {
                 </div>
             </form>
         </section>
+        <hr>
         <footer>
             <?php include('footer.php'); ?>
         </footer>
