@@ -110,9 +110,7 @@ textarea {
 /* Centrer le texte du header */    
 .conteneurHeader {
     display: flex;
-    justify-content: space-between;
-    margin-left: 5%;
-    margin-right: 5%;
+    justify-content: center;
 }
 /* Dimension du logo */
 .logo {
