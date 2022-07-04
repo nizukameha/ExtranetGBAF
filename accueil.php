@@ -38,7 +38,7 @@ $acteurs = $requette->fetchAll();
         <!-- Bloc qui contient tous les acteurs -->
         <section class="conteneurActeurs">
             <h2>Acteurs et partenaires</h2>
-            <p class="descriptionActeurEtPartenaire">texte acteurs et partenaires ...</p>
+            <p>Les produits et services bancaires sont nombreux et très variés. Afin de renseigner au mieux les clients, les salariés des banques et assurances peuvent retrouver dans cette section un grand nombre d’informations sur les partenaires et acteurs du groupe ainsi que sur les produits et services bancaires et financiers. Chaque salarié pourra ainsi poster un commentaire et donner son avis.</p>
             <?php
             // On affiche les données dans une boucle
             foreach ($acteurs as $acteur) {
