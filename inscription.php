@@ -111,6 +111,9 @@ if(!empty($_POST)) {
         <link rel="shortcut icon" type="image/png" href="IMG/faviconGBAF.ico"/>
     </head>
     <body>
+        <header>
+            <?php include('headerconnexion.php'); ?>
+        </header>
         <section class="conteneurImage">
             <img class='logoOpacity' src="IMG/logoGBAF.jpg" alt="Logo GBAF">
             <form method="post">
