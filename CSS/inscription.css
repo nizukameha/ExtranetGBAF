@@ -23,6 +23,10 @@ body {
     transform: scale(1.1);
     cursor: pointer;
     }
+    .logo:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        }
     .deconnexion {
         width: 30px;
         height: 30px;
@@ -40,6 +44,11 @@ header {
 h1 {
     font-size: 2em;
     text-shadow: 1px 1px 4px hsla(0, 100%, 50%, 0.5);
+}
+/* Couleur et épaisseur des traits de séparation */
+hr {
+    border: solid 1px;
+    border-color:hsla(0, 100%, 50%);
 }
 /* Placer le formulaire de connexion au centre */ 
 form {
