@@ -121,7 +121,7 @@ header {
 /* Dimensions du bloc conteneur */    
     .conteneurActeurs {
         width: 90%;
-        text-align: justify;
+        text-align: center;
     }
 /* Center le bloc conteneur et définir ses dimensions */    
     .conteneurDescriptionBoutton {
