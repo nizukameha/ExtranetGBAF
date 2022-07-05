@@ -7,9 +7,9 @@ if(!isset($_SESSION['id_user'])) {
     exit;
 }
 // On récupere toutes les données de la table acteur
-$requette = $DB->prepare("SELECT * FROM acteur");
-$requette ->execute(array());
-$acteurs = $requette->fetchAll();
+$requete = $DB->prepare("SELECT * FROM acteur");
+$requete ->execute(array());
+$acteurs = $requete->fetchAll();
 
 ?>
 
