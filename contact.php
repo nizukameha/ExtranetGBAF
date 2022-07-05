@@ -10,8 +10,8 @@ if(isset($_POST['valider'])) {
         $emailUtilisateur = htmlspecialchars($email);
         // Verification que l'email existe bien
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $requette = $DB->prepare("INSERT INTO contact(email, post) VALUES (?, ?)");
-            $requette->execute(array($emailUtilisateur, $post));
+            $requete = $DB->prepare("INSERT INTO contact(email, post) VALUES (?, ?)");
+            $requete->execute(array($emailUtilisateur, $post));
             $emailSend = "Votre demande de contact a été envoyé";
         } else {
             $badEmail = "Cet email n'est pas valide !";

@@ -5,14 +5,14 @@ if(!isset($_SESSION['id_user'])) {
     header('Location: connexion.php');
     exit;
 }
-// Requette a la bdd pour récupérer les données de l'utilisateur en fonction de son id
-$requette = $DB->prepare("SELECT *
+// requete a la bdd pour récupérer les données de l'utilisateur en fonction de son id
+$requete = $DB->prepare("SELECT *
     FROM account 
     WHERE id_user = ?");
 // récupere l'id_user de l'utilisateur
-$requette->execute([$_SESSION['id_user']]);
+$requete->execute([$_SESSION['id_user']]);
 
-$req = $requette->fetch();
+$req = $requete->fetch();
 
 // Condition qui s'applique lorsque que les input du formulaire sont vides
 if(!empty($_POST)) {
@@ -50,9 +50,9 @@ if(!empty($_POST)) {
         // Si les modifications sont valides on met a jour la bdd et l'utilisateur est redirigé sur la page d'acceuil
         if($valid) {
             $crypt_mdp = password_hash($mdp, PASSWORD_BCRYPT);
-            $requette = $DB->prepare("UPDATE account SET nom = ?, prenom = ?, identifiant = ?, mdp = ?, question = ?, reponse = ?
+            $requete = $DB->prepare("UPDATE account SET nom = ?, prenom = ?, identifiant = ?, mdp = ?, question = ?, reponse = ?
             WHERE id_user = ?");
-            $requette->execute(array($nom, $prenom, $identifiant, $crypt_mdp, $question, $reponse, $_SESSION['id_user']));
+            $requete->execute(array($nom, $prenom, $identifiant, $crypt_mdp, $question, $reponse, $_SESSION['id_user']));
 
             $_SESSION['nom'] = $nom;
             $_SESSION['prenom'] = $prenom;
@@ -60,7 +60,7 @@ if(!empty($_POST)) {
             $_SESSION['question'] = $question;
             $_SESSION['reponse'] = $reponse;
 
-            header('Location: accueil.php');
+            header('Location: index.php');
             exit;
         }
     

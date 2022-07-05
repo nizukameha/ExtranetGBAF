@@ -3,7 +3,7 @@
 include_once('DB/connexionDB.php');
 
 if(isset($_SESSION['id_user'])) {
-    header('Location: accueil.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -27,16 +27,16 @@ if(!empty($_POST)) {
         // Si l'utilisateur a remplis l'identifiant et le mot de passe on passe a la condition suivante
         // On vérifie dans la bdd que l'identifiant et le mdp correspondent
         if($valid) {
-            $requette = $DB->prepare("SELECT mdp
+            $requete = $DB->prepare("SELECT mdp
                 FROM account
                 WHERE identifiant = ?");
-            $requette->execute(array($identifiant));
-            $requette = $requette->fetch();
+            $requete->execute(array($identifiant));
+            $requete = $requete->fetch();
 
             // Si la combinaison identifiant et mdp est n'est pas vrai voici ce qu'il se passe :
-            if(isset($requette['mdp'])) {
+            if(isset($requete['mdp'])) {
                 // Si l'identifiant est correct mais pas le mdp alors c'est faux
-                if(!password_verify($mdp, $requette['mdp'])) {
+                if(!password_verify($mdp, $requete['mdp'])) {
                     $valid = false;
                     $err_pseudo = "* L'identifiant ou/et le mot de passe sont incorrects";
                 }
@@ -49,26 +49,26 @@ if(!empty($_POST)) {
 
         // Une fois que c'est validé on prepare la bdd :
         if($valid) {
-            $requette = $DB->prepare("SELECT *
+            $requete = $DB->prepare("SELECT *
             FROM account
             WHERE identifiant = ?");
-            $requette->execute(array($identifiant));
-            $requette_user = $requette->fetch();
+            $requete->execute(array($identifiant));
+            $requete_user = $requete->fetch();
                 
             // On met a jour la bdd
-            if(isset($requette_user['id_user'])) {
-                $requette = $DB->prepare("UPDATE account WHERE id_user = ?");
+            if(isset($requete_user['id_user'])) {
+                $requete = $DB->prepare("UPDATE account WHERE id_user = ?");
 
-                $requette ->execute(array($requette_user['id_user']));
+                $requete ->execute(array($requete_user['id_user']));
                 // On enregistre dans une session les données de l'utilisateur connecté
-                $_SESSION['id_user'] = $requette_user['id_user'];
-                $_SESSION['nom'] = $requette_user['nom'];
-                $_SESSION['prenom'] = $requette_user['prenom'];
-                $_SESSION['identifiant'] = $requette_user['identifiant'];
-                $_SESSION['question'] = $requette_user['question'];
-                $_SESSION['reponse'] = $requette_user['reponse'];
+                $_SESSION['id_user'] = $requete_user['id_user'];
+                $_SESSION['nom'] = $requete_user['nom'];
+                $_SESSION['prenom'] = $requete_user['prenom'];
+                $_SESSION['identifiant'] = $requete_user['identifiant'];
+                $_SESSION['question'] = $requete_user['question'];
+                $_SESSION['reponse'] = $requete_user['reponse'];
                 // On redirige l'utilisateur vers la page d'accueil
-                header('Location: accueil.php');
+                header('Location: index.php');
                 exit;
             } else {
                 $valid = false;

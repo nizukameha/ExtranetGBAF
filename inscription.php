@@ -3,7 +3,7 @@
 include_once('DB/connexionDB.php');
 // Si l'utilisateur est déja connecté on le redirige sur la page d'accueil
 if(isset($_SESSION['id_user'])) {
-    header('Location: accueil.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -29,15 +29,15 @@ if(!empty($_POST)) {
             $valid = false;
         } else {
             // Cherche dans la base de donnée si le nom donnée n'existe pas
-            $requette = $DB->prepare("SELECT nom
+            $requete = $DB->prepare("SELECT nom
             FROM account
             WHERE nom = ?");
             // On indique que c'est le nom qui sera envoyer dans la bdd
-            $requette ->execute(array($nom));
+            $requete ->execute(array($nom));
             // fetch donne le résultat
-            $requette = $requette->fetch();
+            $requete = $requete->fetch();
             // Si une colonne de la table 'account' contient la meme donnée alors l'inscription n'est pas validé
-            if(isset($requette['nom'])) {
+            if(isset($requete['nom'])) {
                 $valid = false;
                 $err_nom = "Ce nom existe déjà";
             }
@@ -46,12 +46,12 @@ if(!empty($_POST)) {
         if(empty($prenom)) { 
             $valid = false;
         } else {
-            $requette = $DB->prepare("SELECT prenom
+            $requete = $DB->prepare("SELECT prenom
             FROM account
             WHERE prenom = ?");
-            $requette ->execute(array($prenom));
-            $requette = $requette->fetch();
-            if(isset($requette['prenom'])) {
+            $requete ->execute(array($prenom));
+            $requete = $requete->fetch();
+            if(isset($requete['prenom'])) {
                 $valid = false;
                 $err_prenom = "Ce prenom existe déjà";
             }
@@ -60,12 +60,12 @@ if(!empty($_POST)) {
         if(empty($identifiant)) { 
             $valid = false;
         } else {
-            $requette = $DB->prepare("SELECT identifiant
+            $requete = $DB->prepare("SELECT identifiant
             FROM account
             WHERE identifiant = ?");
-            $requette ->execute(array($identifiant));
-            $requette = $requette->fetch();
-            if(isset($requette['identifiant'])) {
+            $requete ->execute(array($identifiant));
+            $requete = $requete->fetch();
+            if(isset($requete['identifiant'])) {
                 $valid = false;
                 $err_identifiant = "Cet identifiant existe déjà";
             }
@@ -86,10 +86,10 @@ if(!empty($_POST)) {
         if($valid) {
             // Fonction pour générer une clé de hash pour le mot de passe
             $crypt_mdp = password_hash($mdp, PASSWORD_BCRYPT);
-            // On prépare la requette d'insertion dans la bdd
-            $requette = $DB->prepare("INSERT INTO account(nom, prenom, identifiant, mdp, question, reponse) VALUES (?, ?, ?, ?, ?, ?)");
+            // On prépare la requete d'insertion dans la bdd
+            $requete = $DB->prepare("INSERT INTO account(nom, prenom, identifiant, mdp, question, reponse) VALUES (?, ?, ?, ?, ?, ?)");
             // On exécute les valeurs présente dans notre tableau
-            $requette ->execute(array($nom, $prenom, $identifiant, $crypt_mdp, $question, $reponse));
+            $requete ->execute(array($nom, $prenom, $identifiant, $crypt_mdp, $question, $reponse));
 
             // Rediriger le nouvel utilisateur sur la page de connexion
             header('Location: connexion.php');

@@ -20,21 +20,21 @@ if(!empty($_POST)) {
         }
         // Si l'utilisateur a remplis l'identifiant et la reponse a la question, on vérifie la correpsondance
         if($valid) {
-            $requette = $DB->prepare("SELECT *
+            $requete = $DB->prepare("SELECT *
                 FROM account
                 WHERE identifiant = ?");
-            $requette->execute(array($identifiant));
-            $requette = $requette->fetch();
+            $requete->execute(array($identifiant));
+            $requete = $requete->fetch();
 
             // On compare les données entrées par l'utilisateur avec la bdd
-            $validData = (($identifiant == $requette['identifiant']) AND ($reponse == $requette['reponse']) AND ($question == $requette['question']));
+            $validData = (($identifiant == $requete['identifiant']) AND ($reponse == $requete['reponse']) AND ($question == $requete['question']));
             // Si les données ne sont pas valides on affiche un message d'erreur
             if ($validData) { 
                 // On enregistre les données dans la session et on redirige l'utilisateur vers la page de création du nouveau mot de passe
-                $_SESSION['id_user'] = $requette['id_user'];
-                $_SESSION['identifiant'] = $requette['identifiant'];
-                $_SESSION['nom']= $requette['nom'];
-                $_SESSION['prenom']= $requette['prenom'];
+                $_SESSION['id_user'] = $requete['id_user'];
+                $_SESSION['identifiant'] = $requete['identifiant'];
+                $_SESSION['nom']= $requete['nom'];
+                $_SESSION['prenom']= $requete['prenom'];
                 header('Location: newpassword.php');
                 exit;
             } else { 
