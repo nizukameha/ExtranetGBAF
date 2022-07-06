@@ -131,7 +131,7 @@ header {
     .logoActeurs {
         margin-top: 1em;;
         text-align:center;
-        max-width: 350px;
+        max-width: 300px;
     }
 /* Design du bouton "Lire la suite" */    
     .boutonSuite {
